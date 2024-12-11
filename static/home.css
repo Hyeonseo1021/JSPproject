@@ -1,0 +1,289 @@
+@charset "utf-8";
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    padding: 10px 20px;
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.search-bar input {
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 40px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+}
+
+.profile-container {
+  	position: absolute;
+	right: 2%;      
+}
+
+.profile-icon {
+	
+    width: 40px;
+    height: 40px;
+   	border-radius: 50%;
+    cursor: pointer;
+}
+
+
+.auth-profile .profile {
+    width: 100px;
+    height: 100px;
+    
+}
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+}
+
+header {
+    background-color: #4CAF50;
+    
+    text-align: center;
+    padding: 1rem 0;
+    font-size: 1.5rem;
+}
+
+#home {
+    text-align: center;
+    padding: 2rem;
+    background: url('../../static/home-banner.jpg') no-repeat center center;
+    background-size: cover;
+    color: white;
+}
+
+#home h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+#home p {
+    font-size: 1.2rem;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+}
+
+header .main-banner {
+    background: url('../../static/banner.jpg') no-repeat center center;
+    background-size: cover;
+    text-align: center;
+    padding: 5rem 2rem;
+    color: white;
+}
+
+.main-banner h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.main-banner p {
+    font-size: 1.2rem;
+}
+
+
+
+/* Notice Section */
+#notice {
+    padding: 2rem;
+    text-align: center;
+}
+
+#notice h2 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+#notice p {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 1.5rem;
+}
+
+/* Region Navigation Buttons */
+.region-nav {
+    margin-bottom: 1.5rem;
+}
+
+.region-nav button {
+    margin: 0.5rem;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f4f4f4;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.region-nav button:hover,
+.region-nav button.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+/* Dynamic Content Area */
+#region-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.region-content {
+    display: none;
+}
+
+.region-content.active {
+    display: block;
+}
+
+/* Notice Items - Horizontal Layout */
+.notice-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    max-height: 200px; /* Default height for 3 items */
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.notice-list.expanded {
+    max-height: 1000px; /* Enough height for all items */
+}
+
+.notice-item {
+    width: 300px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 1rem;
+    text-align: left;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.notice-item:hover {
+    transform: scale(1.05);
+}
+
+.notice-item img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+}
+
+.notice-item h3 {
+    font-size: 1.2rem;
+    margin: 0 0 0.5rem;
+    color: #333;
+}
+
+.notice-item p {
+    font-size: 1rem;
+    color: #555;
+}
+
+/* View More Button */
+.view-more {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.view-more:hover {
+    background-color: #45a049;
+}
+
+
+#gallery {
+    padding: 2rem;
+    text-align: center;
+}
+
+
+footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #333;
+    color: white;
+    font-size: 0.9rem;
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .auth-buttons {
+        position: static;
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar {
+        padding: 10px;
+    }
+
+    .logo {
+        font-size: 20px;
+    }
+
+    .search-bar input {
+        width: 100%;
+    }
+}
