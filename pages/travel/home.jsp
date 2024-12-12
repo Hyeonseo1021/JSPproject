@@ -6,7 +6,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>dashboard</title>
+	<title>home</title>
 	<link rel="stylesheet" href="../../static/home.css">
 </head>
 <body>
@@ -18,13 +18,14 @@
         <nav>
             <ul>
                 <li><a href="../travel/home.jsp">홈</a></li>
-                <li><a href="#">여행</a></li>
+                <li><a href="../travel/theme.jsp">여행사</a></li>
+                <li><a href="#">여행지 추천</a></li>
                 <li><a href='../community/community.jsp'">커뮤니티</a></li>
                 
             </ul>
         </nav>
         <div class="profile-container">
-            <img src="../../static/images/profile.svg" alt="Profile" class="profile-icon">
+            <img src="../../static/images/profile.svg" alt="Profile" class="profile-icon" onclick="location.href='../user/profile.jsp'">
         </div>
        
     </header>
@@ -117,7 +118,9 @@
         </div>
         <button class="view-more" onclick="toggleViewMore(this, 'gangwon')">View More</button>
     </div>
+    
 
+    
     <!-- Jeju -->
     <div id="jeju" class="region-content">
         <div class="notice-list">
