@@ -1,11 +1,10 @@
-@charset "utf-8";
-
 /* General Reset */
 * {
     margin: 10;
     padding: 10;
     box-sizing: border-box;
 }
+
 body {
     font-family: 'Arial', sans-serif;
     background-color: #f9f9f9;
@@ -47,7 +46,7 @@ nav ul li a {
 
 .profile-container {
     position: absolute;
-    right: 2%;      
+    right: 2%;
 }
 
 .profile-icon {
@@ -56,6 +55,7 @@ nav ul li a {
     border-radius: 50%;
     cursor: pointer;
 }
+
 .dropdown-menu {
     display: none;
     position: absolute;
@@ -65,33 +65,24 @@ nav ul li a {
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
     z-index: 1000;
-    overflow: hidden;
-    white-space: nowrap; /* 줄바꿈 방지 */
-    width: auto; /* 콘텐츠 크기에 맞게 폭 설정 */
-    min-width: 150px; /* 최소 폭 설정 */
+    white-space: nowrap;
+    min-width: 150px;
 }
 
 .dropdown-menu a {
-    display: block; /* 글자 길게 표시 방지 */
+    display: block;
     padding: 10px 20px;
     color: #333;
     text-decoration: none;
-    text-align: center;
     font-size: 14px;
-    line-height: 1.5; /* 줄 간격 설정 */
 }
 
 .dropdown-menu a:hover {
     background-color: #f2f2f2;
 }
-/* Agency Intro Section */
 .agency-intro {
     text-align: center;
-    margin: 20px 0;
-    padding: 20px;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
+   
 }
 
 .agency-intro h1 {
@@ -100,19 +91,12 @@ nav ul li a {
     margin-bottom: 10px;
 }
 
-.agency-intro p {
-    font-size: 18px;
-    color: #666;
-}
 
 /* Agency List Section */
 .agency-list {
     margin: 20px auto;
     width: 90%;
     max-width: 1200px;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
     padding: 20px;
 }
 
@@ -122,53 +106,49 @@ nav ul li a {
     margin-bottom: 20px;
 }
 
-.agencys {
+.agencies {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     gap: 20px;
 }
 
-.agency-card {
-    width: calc(33.333% - 20px);
-    background-color: #fff;
+.agency-item {
+    display: flex;
+    align-items: center;
     border: 1px solid #ddd;
     border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    padding: 15px;
+    padding: 20px;
+    background-color: #fff;
+    gap: 30px;
 }
 
-.agency-card img {
-    width: 100%;
-    height: 150px;
-    object-fit: cover;
-    border-bottom: 1px solid #ddd;
+.agency-logo {
+    width: 100px; /* 고정 크기 조정 */
+    height: 100px; /* 고정 크기 조정 */
+    max-width: 120px; /* 최대 너비 제한 */
+    max-height: 120px; /* 최대 높이 제한 */
+     /* 빈 공간을 채우기 위한 배경색 */
+    display: block;
 }
 
-.agency-card h3 {
-    font-size: 20px;
+.agency-info {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 20px;
+}
+
+.agency-info h3 {
+    margin: 0;
+    font-size: 22px;
+    font-weight: bold;
     color: #333;
-    margin: 10px 0;
 }
 
-.agency-card p {
-    font-size: 14px;
-    color: #666;
-    margin-bottom: 15px;
-}
-
-.agency-card button {
-    background-color: #0066cc;
-    color: #fff;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.agency-card button:hover {
-    background-color: #005bb5;
+.agency-info p {
+    margin: 0;
+    font-size: 16px;
+    color: #555;
 }
 
 /* Footer */
@@ -182,36 +162,26 @@ footer {
     bottom: 0;
     left: 0;
     width: 100%;
-    z-index: 1000;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    .navbar {
+    .agency-item {
         flex-direction: column;
         align-items: flex-start;
-        gap: 10px;
     }
-
-    .agency-card {
-        width: calc(50% - 20px);
+    .agency-logo {
+        width: 100px;
+        height: 100px;
+        margin-bottom: 10px;
     }
 }
 
 @media (max-width: 480px) {
-    .navbar {
-        padding: 10px;
+    .agency-info h3 {
+        font-size: 18px;
     }
-
-    .agency-card {
-        width: 100%;
-    }
-
-    .agency-intro h1 {
-        font-size: 28px;
-    }
-
-    .agency-intro p {
-        font-size: 16px;
+    .agency-info p {
+        font-size: 14px;
     }
 }

@@ -15,26 +15,27 @@
             Connection conn = null;
             PreparedStatement stmt = null;
             ResultSet rs = null;
-            
+
             try {
                 // DB 연결
                 conn = DBConnection.getConnection();
-                
+
                 // 이메일에 해당하는 사용자 검색 쿼리
-                String sql = "SELECT * FROM users WHERE email = ?";
+                String sql = "SELECT id, email, password FROM users WHERE email = ?";
                 stmt = conn.prepareStatement(sql);
                 stmt.setString(1, email);
                 rs = stmt.executeQuery();
-                
+
                 if (rs.next()) {
                     // DB에서 가져온 비밀번호 (hashed 비밀번호)
                     String hashedPassword = rs.getString("password");
-                    
+
                     // BCrypt로 비밀번호 비교
                     if (BCrypt.checkpw(password, hashedPassword)) {
                         // 로그인 성공 - 세션에 사용자 정보 저장 후 홈 페이지로 리디렉션
-                        session.setAttribute("user", email);  // 세션에 이메일을 저장 (사용자 로그인 상태 관리)
-                        response.sendRedirect("../travel/home.jsp");  // 홈 페이지로 리디렉션
+                        session.setAttribute("userId", rs.getInt("id")); // 사용자 ID 저장
+                        session.setAttribute("userEmail", rs.getString("email")); // 사용자 이메일 저장
+                        response.sendRedirect("../travel/home.jsp"); // 홈 페이지로 리디렉션
                     } else {
                         // 비밀번호 틀림
                         errorMessage = "비밀번호가 틀렸습니다.";
@@ -67,12 +68,13 @@
     }
 %>
 
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Signup - Travelo</title>
+    <title>Email_login</title>
     <link rel="stylesheet" href="../../static/css/email_login.css">
 </head>
 <body>

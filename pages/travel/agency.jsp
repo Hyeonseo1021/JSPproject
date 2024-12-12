@@ -4,44 +4,64 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<title>테마</title>
-	<link rel="stylesheet" href="../../static/css/agency.css">
-	<script src="../../static/js/profile-dropdown.js" defer></script>
+    <meta charset="UTF-8">
+    <title>테마</title>
+    <link rel="stylesheet" href="../../static/css/agency.css">
+    <script src="../../static/js/profile-dropdown.js" defer></script>
 </head>
 <body>
-	<header class="navbar">
-        <div class="logo">Travelo</div>
-        <div class="search-bar">
-            <input type="text" placeholder="검색">
-        </div>
-        <nav>
-            <ul>
-                <li><a href="../travel/home.jsp">홈</a></li>
-                <li><a href="../travel/agency.jsp">여행사</a></li>
-                <li><a href="../travel/recommend.jsp">여행지 추천</a></li>
-                <li><a href="../community/community.jsp">커뮤니티</a></li>
-            </ul>
-        </nav>
-        <div class="profile-container">
-            <img src="../../static/images/profile.svg" alt="Profile" class="profile-icon" onclick="toggleDropdown()">
-            <div class="dropdown-menu" id="profileDropdown">
-            	<a href="../user/profile.jsp">프로필 수정</a>
-            	<a href="../user/login.jsp">로그아웃</a>
-        	</div>
-        </div>
-    </header>
+	<%@ include file="../../static/commons/header.jsp" %>
 
     <main>
         <section class="agency-intro">
             <h1>여행사</h1>
-           
         </section>
 
         <section class="agency-list">
             <h2>목록</h2>
-            <div class="agencys">
-                
+            <div class="agencies">
+                <%
+                    Connection conn = null;
+                    PreparedStatement pstmt = null;
+                    ResultSet rs = null;
+
+                    try {
+                        // 데이터베이스 연결
+                        conn = DBConnection.getConnection();
+                        
+                        // 여행사 정보 조회 쿼리
+                        String sql = "SELECT name, description, location, contact, logo_url FROM agency";
+                        pstmt = conn.prepareStatement(sql);
+                        rs = pstmt.executeQuery();
+
+                        // 데이터 출력
+                        while (rs.next()) {
+                            String name = rs.getString("name");
+                            String description = rs.getString("description");
+                            String location = rs.getString("location");
+                            String contact = rs.getString("contact");
+                            String logoUrl = rs.getString("logo_url");
+                %>
+                            <div class="agency-item">
+                               	<img class="agency-logo" src="<%= request.getContextPath() %>/<%= logoUrl != null && !logoUrl.isEmpty() ? logoUrl : "static/images/default.jpg" %>" alt="<%= rs.getString("name") %>">
+                                <h3><%= name %></h3>
+                                <p><%= description %></p>
+                                <p>위치: <%= location %></p>
+                                <p>연락처: <%= contact %></p>
+                            </div>
+                <%
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                %>
+                        <p>여행사 정보를 가져오는 중 오류가 발생했습니다.</p>
+                <%
+                    } finally {
+                        if (rs != null) try { rs.close(); } catch (Exception e) {}
+                        if (pstmt != null) try { pstmt.close(); } catch (Exception e) {}
+                        if (conn != null) try { conn.close(); } catch (Exception e) {}
+                    }
+                %>
             </div>
         </section>
     </main>

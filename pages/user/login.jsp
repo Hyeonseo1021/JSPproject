@@ -1,11 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+    // 로그아웃 처리: 쿼리 파라미터로 로그아웃 요청인지 확인
+    String action = request.getParameter("action");
+    if ("logout".equalsIgnoreCase(action)) {
+        // 세션 무효화
+        session.invalidate();
+    }
+%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Signup - Travelo</title>
+    <title>Login</title>
     <link rel="stylesheet" href="../../static/css/login.css">
 </head>
 <body>
@@ -31,6 +39,7 @@
         <div class="login-box">
             <h1>Travelo</h1>
             <p>여행 준비, 이제 더 쉬워집니다!</p>
+            
             <button class="email-btn" onclick="location.href='email_login.jsp'">이메일로 시작하기</button>
             <button class="kakao-btn">카카오로 시작하기</button>
             <button class="naver-btn">네이버로 시작하기</button>
@@ -39,5 +48,3 @@
 
 </body>
 </html>
-
-

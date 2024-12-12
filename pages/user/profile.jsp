@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*" %>
 <%@ page import="utils.DBConnection" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,34 +13,41 @@
     <script src="../../static/js/profile-dropdown.js" defer></script>
 </head>
 <body>
-    <header class="navbar">
-        <div class="logo">Travelo</div>
-        <div class="search-bar">
-            <input type="text" placeholder="검색">
-        </div>
-        <nav>
-            <ul>
-                <li><a href="../travel/home.jsp">홈</a></li>
-                <li><a href="../travel/agency.jsp">여행사</a></li>
-                <li><a href="../travel/recommend.jsp">여행지 추천</a></li>
-                <li><a href="../community/community.jsp">커뮤니티</a></li>
-            </ul>
-        </nav>
-        <div class="profile-container">
-            <img src="../../static/images/profile.svg" alt="Profile" class="profile-icon" onclick="toggleDropdown()">
-            <div class="dropdown-menu" id="profileDropdown">
-            	<a href="../user/profile.jsp">프로필 수정</a>
-            	<a href="../user/login.jsp">로그아웃</a>
-        	</div>
-        </div>
-    </header>
+	<%@ include file="../../static/commons/header.jsp" %>
 
     <main class="profile-main">
-        <%
+        <% 
             String userName = "알 수 없음"; // 기본 값
             String userEmail = "알 수 없음"; // 기본 값
-        %>
+            int userId = -1; // 기본 사용자 ID
 
+            // 세션 확인
+            if (session.getAttribute("userId") != null) {
+                userId = (int) session.getAttribute("userId");
+
+                // 데이터베이스 연결
+                try {
+                    Connection conn = DBConnection.getConnection();
+                    String query = "SELECT name, email FROM users WHERE id = ?";
+                    PreparedStatement pstmt = conn.prepareStatement(query);
+                    pstmt.setInt(1, userId);
+
+                    ResultSet rs = pstmt.executeQuery();
+                    if (rs.next()) {
+                        userName = rs.getString("name");
+                        userEmail = rs.getString("email");
+                    }
+
+                    rs.close();
+                    pstmt.close();
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                response.sendRedirect("../user/login.jsp"); // 로그인 페이지로 리다이렉트
+            }
+        %>
 
         <!-- 사용자 정보 섹션 -->
         <section class="profile-header">
@@ -73,7 +81,7 @@
         <section class="bookmarked-places">
             <h2>북마크한 여행지</h2>
             <ul>
-               
+                <!-- 북마크한 여행지 리스트는 이후 구현 -->
             </ul>
         </section>
 
@@ -85,10 +93,14 @@
                     <label for="name">이름:</label>
                     <input type="text" id="name" name="name" value="<%= userName %>">
                 </div>
-                
+
                 <div class="form-group">
-                    <label for="password">비밀번호 변경:</label>
+                    <label for="password">새 비밀번호:</label>
                     <input type="password" id="password" name="password" placeholder="새 비밀번호">
+                </div>
+                <div class="form-group">
+                    <label for="confirm-password">비밀번호 확인:</label>
+                    <input type="password" id="confirm-password" name="confirmPassword" placeholder="비밀번호 확인">
                 </div>
                 <button type="submit">정보 수정</button>
             </form>

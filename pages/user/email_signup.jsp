@@ -73,7 +73,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Signup - Travelo</title>
+    <title>Email_signup</title>
     <link rel="stylesheet" href="../../static/css/email_login.css">
 </head>
 <body>
