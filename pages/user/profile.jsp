@@ -6,8 +6,10 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile</title>
-    <link rel="stylesheet" href="../../static/profile.css">
+    <link rel="stylesheet" href="../../static/css/profile.css">
+    <script src="../../static/js/profile-dropdown.js" defer></script>
 </head>
 <body>
     <header class="navbar">
@@ -18,44 +20,26 @@
         <nav>
             <ul>
                 <li><a href="../travel/home.jsp">홈</a></li>
-                <li><a href="../travel/theme.jsp">여행사</a></li>
-                <li><a href="#">여행지 추천</a></li>
+                <li><a href="../travel/agency.jsp">여행사</a></li>
+                <li><a href="../travel/recommend.jsp">여행지 추천</a></li>
                 <li><a href="../community/community.jsp">커뮤니티</a></li>
             </ul>
         </nav>
         <div class="profile-container">
-            <img src="../../static/images/profile.svg" alt="Profile" class="profile-icon" onclick="location.href='../user/profile.jsp'">
+            <img src="../../static/images/profile.svg" alt="Profile" class="profile-icon" onclick="toggleDropdown()">
+            <div class="dropdown-menu" id="profileDropdown">
+            	<a href="../user/profile.jsp">프로필 수정</a>
+            	<a href="../user/login.jsp">로그아웃</a>
+        	</div>
         </div>
     </header>
 
     <main class="profile-main">
-        <% // 수정해야 함
-            // 사용자 정보를 가져오기 위한 데이터베이스 연결 및 쿼리 실행
-            Connection conn = null;
-            PreparedStatement ps = null;
-            ResultSet rs = null;
+        <%
             String userName = "알 수 없음"; // 기본 값
             String userEmail = "알 수 없음"; // 기본 값
-            int userId = 1; // 예시: 사용자 ID를 세션에서 가져와야 함
-
-            try {
-                conn = DBConnection.getConnection();
-                String query = "SELECT name, email FROM users WHERE id = ?";
-                ps = conn.prepareStatement(query);
-                ps.setInt(1, userId);
-                rs = ps.executeQuery();
-                if (rs.next()) {
-                    userName = rs.getString("name");
-                    userEmail = rs.getString("email");
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            } finally {
-                if (rs != null) try { rs.close(); } catch (Exception e) {}
-                if (ps != null) try { ps.close(); } catch (Exception e) {}
-                if (conn != null) try { conn.close(); } catch (Exception e) {}
-            }
         %>
+
 
         <!-- 사용자 정보 섹션 -->
         <section class="profile-header">
@@ -89,29 +73,7 @@
         <section class="bookmarked-places">
             <h2>북마크한 여행지</h2>
             <ul>
-                <%
-                    // 데이터베이스에서 북마크한 여행지 가져오기
-                    try {
-                        conn = DBConnection.getConnection();
-                        String query = "SELECT place_name, location FROM bookmarks WHERE user_id = ?";
-                        ps = conn.prepareStatement(query);
-                        ps.setInt(1, userId);
-                        rs = ps.executeQuery();
-                        while (rs.next()) {
-                %>
-                <li>
-                    <strong><%= rs.getString("place_name") %></strong> - <%= rs.getString("location") %>
-                </li>
-                <%
-                        }
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    } finally {
-                        if (rs != null) try { rs.close(); } catch (Exception e) {}
-                        if (ps != null) try { ps.close(); } catch (Exception e) {}
-                        if (conn != null) try { conn.close(); } catch (Exception e) {}
-                    }
-                %>
+               
             </ul>
         </section>
 

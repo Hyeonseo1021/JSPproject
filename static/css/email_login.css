@@ -1,0 +1,236 @@
+@charset "utf-8";
+/* General Reset */
+* {
+    margin: 10;
+    padding: 10;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    padding: 10px 20px;
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.search-bar input {
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 40px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 18px;
+}
+
+.auth-buttons {
+    position: absolute;
+    right: 2%;
+}
+
+.auth-buttons button {
+    margin-left: 10px;
+    padding: 5px 15px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #fff;
+    height: 35px;
+    width: 100px;
+    cursor: pointer;
+}
+
+.auth-buttons .signup {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+}
+
+/* login Container */
+.login-container {
+    background-size: cover;
+    background-position: center;
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.login-box {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 30px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+}
+
+/* Heading and Description */
+.login-box h1 {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.login-box p {
+    font-size: 16px;
+    margin-bottom: 30px;
+    color: #555;
+}
+
+/* Form Styles */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+}
+
+form button {
+    width: 100%;
+    padding: 12px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+form button:hover {
+    background-color: #555;
+}
+
+/* Other Login Buttons */
+.login-box button {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.kakao-btn {
+    background-color: #ffe812;
+    color: #000;
+}
+
+.naver-btn {
+    background-color: #03c75a;
+    color: #fff;
+}
+
+/* 이메일로 회원가입 링크 스타일 */
+.signup-link {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #555;
+}
+
+.signup-link a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.signup-link a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .auth-buttons {
+        position: static;
+        margin-left: 0;
+    }
+
+    .login-container {
+        padding: 10px;
+    }
+
+    .login-box h1 {
+        font-size: 28px;
+    }
+
+    .login-box p {
+        font-size: 14px;
+    }
+
+    .form-group input,
+    form button,
+    .login-box button {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar {
+        padding: 10px;
+    }
+
+    .logo {
+        font-size: 20px;
+    }
+
+    .search-bar input {
+        width: 100%;
+    }
+
+    .login-box {
+        padding: 20px;
+    }
+
+    .login-box h1 {
+        font-size: 24px;
+    }
+
+    .login-box p {
+        font-size: 12px;
+    }
+
+    .form-group input,
+    form button,
+    .login-box button {
+        font-size: 12px;
+        padding: 10px;
+    }
+}
